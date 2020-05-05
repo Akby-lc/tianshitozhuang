@@ -1,0 +1,28 @@
+/* pages/shopping/shopping.wxss */
+.container {
+  background-color: #F2f2f2;
+  min-height: 100%;
+  justify-content: initial;
+}
+.icon {
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 300rpx;
+  margin-left: 300rpx;
+}
+.title {
+  width: 100vw;
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 50rpx;
+}
+page{
+  min-height: 100%;
+  background-color: #F2f2f2;
+}
+button{
+  background: red;
+  color: #fff;
+}

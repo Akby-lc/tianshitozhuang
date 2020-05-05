@@ -1,0 +1,9 @@
+<!--pages/details/details.wxml-->
+
+<view>
+  <text> {{list.basicInfo.characteristic}} </text>
+</view>
+
+<import src="/wxParse/wxParse.wxml"/>
+
+<template is="wxParse" data="{{wxParseData:article.nodes}}"/>

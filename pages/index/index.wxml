@@ -1,0 +1,95 @@
+<view class="swiper">
+  <!-- 轮播图 -->
+  <swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+    <swiper-item wx:for="{{banners}}" wx:key="index">
+      <image src="{{item.picUrl}}" />
+    </swiper-item>
+  </swiper>
+  <!-- 搜索框 -->
+  <view class="search">
+    <input type="text" placeholder="输入搜索关键词" ></input>
+    <image src="/images/icon/search.svg"></image>
+  </view>
+</view>
+
+<view class="notice-box">
+  <view class="notice">
+    <image class="notice_icon" src="/images/notice.png"></image>
+    <text class="notice_title" > 商城新开张，优惠多多，戳 戳 戳 我看详情。 </text>
+  </view>
+  <view class="more">更多 > </view>
+</view>
+<!-- 商品类别 -->
+<view class="box">
+  <view class="list" wx:for="{{splbList}}" wx:key="id">
+    <view class="column"  id="{{item.id}}">
+      <image mode="aspectFill" class="imgbox" src="{{item.icon}}"></image>
+      <view class="title">{{item.name}}</view>
+    </view>          
+  </view>
+</view>
+
+<view class="container">
+  <!-- 爆品推荐 -->
+  <view class="weui-loadmore">
+    <view class="container-recom">爆品推荐</view>
+  </view>
+  <view class="goods">
+    <view class="goods-box" wx:for="{{recommend}}" wx:key="id">
+      <view class="img-box">
+        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+      </view>
+      <view class="goods-title">{{item.name}}</view>
+      <view style='display:flex;'>
+        <view class="goods-price">¥ {{item.minPrice}}</view>
+        <view class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='space'></view>
+
+  <!-- 全民团购 -->
+  <view class="weui-loadmore">
+    <view class="container-recom">全民拼团</view>
+  </view>
+    <view class='tuan'>
+      <view class='tuan-item' wx:for="{{ptList}}" wx:key="id">
+        <view class='tuan-pic'>
+          <image src="{{item.pic}}" />
+        </view>
+        <view class='tuan-title'>{{item.name}}</view>
+        <view class='tuan-profile'>{{item.characteristic}}</view>
+        <view class="weui-badge" style="margin-left: 20rpx;">{{item.tags}}</view>
+        <view class='tuan-price'>
+          <text class='now'>￥ {{item.pingtuanPrice}}</text>
+          <text class='original'>￥ {{item.originalPrice}}</text>
+        </view>
+        <view class="tuan-btn">
+          <button type="warn" size="mini">拼团</button>
+        </view>
+      </view>
+  </view>
+
+  <view class='space'></view>
+
+  <!-- 商品列表 -->
+  <view class="weui-loadmore">
+    <view class="container-recom">商品列表</view>
+  </view>
+  <view class="goods-container">
+    <view class="goods-box" wx:for="{{lbList}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}">
+      <view class="img-box">
+        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+      </view>
+      <view class="goods-title">{{item.name}}</view>
+      <view style='display:flex;'>
+        <view class="goods-price">¥ {{item.minPrice}}</view>
+        <view class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+      </view>
+    </view>
+  </view>
+  <view style='margin-top:60rpx;margin-bottom:30rpx;' class="weui-loadmore" >
+    <view class="container-recom">没有更多啦</view>
+  </view>
+</view>
