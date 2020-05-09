@@ -4,7 +4,8 @@
     "pages/sort/sort",
     "pages/shopping/shopping",
     "pages/logs/logs",
-    "pages/details/details"
+    "pages/details/details",
+    "pages/fav/fav"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,5 +1,7 @@
 // pages/details/details.js
 var WxParse = require('../../wxParse/wxParse.js');
+const { addGoodsFav,getGoodsCate }=require('../../http/api.js');
+
 
 Page({
 
@@ -7,15 +9,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:{}
+    list:{},
+    goodsId:'',
+    code:1
   },
-
+  // 添加购物车
+  add(){
+    let goodsId = this.data.goodsId
+    let token = "aaddab24-3288-49bb-b118-ab8b1113125a"
+    let number ="1"
+    addGoodsFav(goodsId,number,token).then(res=>{
+      console.log('购物车',res)
+    });
+  },
+  // 添加收藏
+  goods(){
+    let goodsId = this.data.goodsId
+    let token = "aaddab24-3288-49bb-b118-ab8b1113125a"
+    getGoodsCate(goodsId,token).then(res=>{
+      console.log('收藏',res)
+      this.setData({
+        code:res.code
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // 接受详情页传过来的id
     let id = options.id
+    this.setData({
+      goodsId:id
+    })
     let url =`https://api.it120.cc/lak/shop/goods/detail?token=aaddab24-3288-49bb-b118-ab8b1113125a&id=${id}`
     wx.request({
       url: url,
@@ -26,7 +52,7 @@ Page({
       complete:(res)=>{
         var that = this;
         WxParse.wxParse('article', 'html', res.data.data.content, this, 5);
-        console.log(res.data.data)
+        console.log("详情页数据",res.data.data)
         this.setData({
           list:res.data.data
         })

@@ -1,9 +1,53 @@
 <!--pages/details/details.wxml-->
-
-<view>
-  <text> {{list.basicInfo.characteristic}} </text>
-</view>
-
 <import src="/wxParse/wxParse.wxml"/>
+<view class="container">
+  <!-- 详情轮播 -->
+  <view class="swiper-container">
+    <swiper class="swiper_box" indicator-dots="true" indicator-active-color="#fff"  circular>
+      <swiper-item wx:for="{{list.pics}}" wx:key="id">
+        <image src="{{item.pic}}" class="slide-image" mode="aspectFill" lazy-load="true" />
+      </swiper-item>      
+    </swiper>
+  </view>
+  <!-- 详情价格 -->
+  <view class="goods-info">
+    <view class="goods-title">{{list.basicInfo.name}}</view>
+    <view class="goods-profile">
+      <view class="p"><text>¥</text> {{list.basicInfo.minPrice}}</view>
+      <view class="goods-price" style='color:#aaa;text-decoration:line-through;padding: 15rpx 0rpx 0rpx 15rpx;'><text>¥</text> {{list.basicInfo.minPrice}}</view>
+      <view class="r">{{list.basicInfo.numberSells}}人已买</view>
+    </view>
+    <view class="goods-info-fx">
+      <view class='item'>
+        <image src='/images/share/share1.png'></image>
+        <button open-type='share'></button>
+      </view>
+      <view class='item' bindtap="drawSharePic">
+        <image src='/images/share/share2.png'></image>
+      </view>
+    </view>
+  </view>
 
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  <view class='space'></view>
+  
+  <!-- 详情介绍 -->
+  <view class="goods-des-info">
+    <view class="label-title">商品介绍</view>
+    <view class="goods-text">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </view>
+  </view>
+  <!-- 详情底部 -->
+  <view class="footer-box">
+    <view class="contact">
+      <button type="primary" open-type="contact" />
+      <image src="/images/icon/kf.svg"></image>
+    </view>
+    <view class="shop-cart-btn" >
+      <image src="/images/nav/cart-off.png"></image>
+    </view>
+    <image class="fav-icon" src="/images/icon/fav{{code==0?1:0}}.svg" bindtap="goods" ></image>
+    <view class="join-shop-cart" bindtap="add" >加入购物车</view>
+    <view  class="now-buy" >立即购买</view>
+  </view>
+</view>

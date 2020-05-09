@@ -1,4 +1,6 @@
 // pages/sort/sort.js
+const { addGoodsFav }=require('../../http/api.js');
+
 Page({
 
   /**
@@ -7,9 +9,17 @@ Page({
   data: {
     conIndex:0,
     splbList:[],// 商品类别
-    lbList:[] //商品列表
+    lbList:[] ,//商品列表,
+    goodsId:''
   },
-
+  add(e){
+    let goodsId = e.currentTarget.dataset.id
+    let token = "aaddab24-3288-49bb-b118-ab8b1113125a"
+    let number ="1"
+    addGoodsFav(goodsId,number,token).then(res=>{
+      console.log('加入',res)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -30,15 +40,15 @@ Page({
         }
       }
     })
-
+     // 商品列表上装
     wx.request({
-      url: 'https://api.it120.cc/lak/shop/goods/list?categoryId=123577',
+      url: 'https://api.it120.cc/lak/shop/goods/list?categoryId=123698',
       method:"GET",
       header:{
         'content-type':'application/json'
       },
       success:(res)=>{
-        console.log("商品列表",res.data.data)
+        console.log("商品列表",res)
         this.setData({
           lbList:res.data.data,
         })
@@ -57,11 +67,17 @@ Page({
             'content-type':'application/json'
           },
           success:(res)=>{
-            console.log("商品列表",res)
+            console.log("商品列表",res.data.data)
+            if(res.data.code===700){
+              this.setData({
+                lbList:""
+              })
+            }
             this.setData({
               lbList:res.data.data,
               conIndex:i
             })
+
           }
         })
   },

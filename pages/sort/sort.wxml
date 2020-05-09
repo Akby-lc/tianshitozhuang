@@ -28,7 +28,7 @@
             <text>评价 +{{item.gotScore}}积分</text>
           </view>
         </view>
-        <image class="car" src="/images/icon/car.svg"></image>
+        <image class="car" src="/images/icon/car.svg" bindtap="add" data-id="{{item.id}}" ></image>
       </view>
     </scroll-view>
   </view>

@@ -1,7 +1,39 @@
 <view class="container">  
-<image class="icon" src="/images/nav/cart-off.png"></image>
-  <view class="title">
-    购物车空空如也～
+  <view class="goodsList">
+    <view class="a-gooods" wx:for="{{items}}" wx:key="key">
+      <view class="a-goods-conts" data-index="{{index}}">
+        <view class="goods-info">
+          <view class="img-box">
+            <image mode="aspectFill" src="{{item.pic}}" class="img" />
+          </view>
+          <view class="text-box">
+            <view class="goods-title">{{item.name}}</view>
+            <view wx:if="{{item.sku}}" class="goods-label">
+              <block wx:for="{{item.sku}}" wx:for-item="option" wx:key="index">
+                {{option.optionName}}:{{option.optionValueName}}
+              </block>
+            </view>
+            <view class="goods-price">¥ {{item.price}}</view>
+            <view class="buy-num">
+              <view class="jian-btn" catchtap="jianBtnTap" data-index="{{index}}">-</view>
+              <input type="number" value="{{item.number}}" data-key="{{item.key}}" bindinput="changeCarNumber"/>
+              <view class="jia-btn {{item.number==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}">+</view>
+            </view>
+          </view>
+        </view>
+        <view class="delete-btn" data-key="{{item.key}}" catchtap="delItem">
+          删除
+        </view>
+        <image class="del-icon" src="/images/del.png" data-key="{{item.key}}" catchtap="delItem"></image>
+      </view>
+    </view>
   </view>
-  <button>去逛逛</button>
+  <view class="jiesuan-box">
+    <view class="left-price">
+      <view class="total">合计：¥  +  积分</view>
+    </view>
+    <view class="to-pay-btn">
+      <navigator url="/pages/to-pay-order/index">去结算</navigator>
+    </view>
+  </view>
 </view>

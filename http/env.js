@@ -1,0 +1,14 @@
+module.exports={
+  //开发环境url
+  dev:{
+    baseUrl:'http://localhost:3000'
+  },
+  //测试环境url
+  test:{
+    baseUrl:'http://www.test.com'
+  },
+  //线上环境url
+  prod:{
+    baseUrl:'https://api.it120.cc'
+  }
+}

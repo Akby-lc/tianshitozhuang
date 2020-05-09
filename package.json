@@ -1,0 +1,23 @@
+{
+  "name": "tstz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akby-lc/tianshitozhuang.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akby-lc/tianshitozhuang/issues"
+  },
+  "homepage": "https://github.com/Akby-lc/tianshitozhuang#readme",
+  "dependencies": {
+    "apifm-wxapi": "^3.8.0"
+  }
+}

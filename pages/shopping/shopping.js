@@ -1,17 +1,42 @@
 // pages/shopping/shopping.js
+const { getGoodsList, addGoodsFav, getGoodsCate }=require('../../http/api.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    items:[]
   },
+  delItem(e){
+    let key = e.currentTarget.dataset.key
+    wx.request({
+      url: `https://api.it120.cc/lak/shopping-cart/remove?token=aaddab24-3288-49bb-b118-ab8b1113125a&key=${key}`,
+      method:'POST',
+      header:{
+        'content-type':'application/json'
+      },
+      success:(res)=>{
+        console.log('删除',res)
+        this.setData({
+          items:res.data.data.items
+        })
+      }
+    })
+  },
+  // getApi() {
+  //   addGoodsFav().then(res=>{
+  //     console.log('终于等到你',res)
+  //   });
 
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    
 
   },
 
@@ -26,7 +51,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.request({
+      url:"https://api.it120.cc/lak/shopping-cart/info?token=aaddab24-3288-49bb-b118-ab8b1113125a",
+      method:'GET',
+      header:{
+        'content-type':'application/json'
+      },
+      complete:(res)=>{
+        console.log('购物车',res.data.data.items)
+        this.setData({
+          items:res.data.data.items
+        })
+      },
+    })
   },
 
   /**
